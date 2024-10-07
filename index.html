@@ -3,47 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Página oficial de Danny Prowls, escritor y autor de múltiples obras literarias.">
-    <title>Danny Prowls - Escritor</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Mi Página - Danny Prowls</title>
+    <!-- Importar fuente con serifa de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Importar Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #555;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 1.5em;
+        }
+
+        .social-links a:hover {
+            color: #0077b5; /* Cambia el color al pasar el mouse */
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.5em;
+        }
+
+        footer .social-links a:hover {
+            color: #0077b5; /* Color de hover para íconos en el pie de página */
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Danny Prowls</h1>
-            <p>Escritor | Poeta | Filósofo</p>
-        </div>
-    </header>
 
-    <section class="about">
-        <div class="container">
-            <h2>Sobre Mí</h2>
-            <p>Soy Danny Prowls, escritor y poeta dedicado a explorar las profundidades de la psicología existencial y las emociones humanas. Mi obra busca tocar el alma y provocar la reflexión sobre la vida, la muerte y todo lo que yace entre ambos extremos.</p>
+<header>
+    <h1>Danny Prowls</h1>
+    <nav>
+        <a href="#about">Sobre mí</a>
+        <a href="#works">Mis libros</a>
+        <a href="#contact">Contacto</a>
+        <!-- Enlaces a redes sociales con íconos -->
+        <div class="social-links">
+            <a href="https://www.facebook.com/tuusuario" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/tuusuario" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.twitter.com/tuusuario" target="_blank"><i class="fab fa-twitter"></i></a>
         </div>
-    </section>
+    </nav>
+</header>
 
-    <section class="works">
-        <div class="container">
-            <h2>Mis Obras</h2>
-            <ul>
-                <li><strong>Libro 1:</strong> Título del libro</li>
-                <li><strong>Libro 2:</strong> Título del libro</li>
-                <!-- Puedes añadir más libros aquí -->
-            </ul>
-        </div>
-    </section>
+<div class="content">
+    <h2 id="about">Sobre mí</h2>
+    <p>Bienvenidos a mi página personal. Soy Danny Prowls, escritor y apasionado de las letras. Aquí encontrarás información sobre mi obra, mis pensamientos y mis próximos proyectos literarios.</p>
 
-    <section class="upcoming">
-        <div class="container">
-            <h2>Próximas Publicaciones</h2>
-            <p>Actualmente estoy trabajando en una nueva obra que verá la luz pronto. ¡Mantente al tanto para más novedades!</p>
-        </div>
-    </section>
+    <h2 id="works">Mis libros</h2>
+    <p>Aquí puedes encontrar información sobre los libros que he publicado y mis próximos lanzamientos. Cada obra ha sido escrita desde el corazón, buscando conectar con las emociones más profundas de los lectores.</p>
 
-    <footer>
-        <div class="container">
-            <p>© 2024 Danny Prowls. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <h2 id="contact">Contacto</h2>
+    <p>Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje a través de mis redes sociales o dejarme un correo electrónico.</p>
+</div>
+
+<footer>
+    <p>Sigue mis redes sociales</p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/tuusuario" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/tuusuario" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.twitter.com/tuusuario" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>&copy; 2024 Danny Prowls. Todos los derechos reservados.</p>
+</footer>
+
 </body>
 </html>
