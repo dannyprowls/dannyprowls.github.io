@@ -1,0 +1,82 @@
+/* Fuentes y colores */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #2e4057;
+}
+
+p {
+    color: #555;
+}
+
+header {
+    background-color: #cfe0e8;
+    text-align: center;
+    padding: 50px 0;
+}
+
+header h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+section {
+    padding: 50px 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.about, .works, .upcoming {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.works ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.works li {
+    padding: 10px 0;
+}
+
+footer {
+    background-color: #2e4057;
+    color: #f4f7f6;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Estilo responsive para dispositivos móviles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5em;
+    }
+
+    .container {
+        width: 95%;
+    }
+}
