@@ -3,102 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danny Prowls - Página Oficial</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Danny Prowls - Escritor</title>
+    <!-- Importar fuente con serifa -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Importar Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: 'Georgia', serif;
-            background-color: var(--background);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Merriweather', serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        h1, h2 {
+
+        header {
+            background-color: #fff;
+            padding: 20px;
             text-align: center;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .header {
-            background-color: #333;
-            padding: 10px;
-            color: white;
-            text-align: center;
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
         }
-        .header h1 {
-            font-size: 3em;
-        }
-        .header p {
+
+        header p {
+            margin: 5px 0;
             font-size: 1.2em;
-            font-family: 'Courier New', Courier, monospace;
             font-style: italic;
         }
-        .content {
-            margin: 20px;
+
+        nav {
+            margin-top: 15px;
         }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #0077b5;
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            flex-grow: 1;
+            text-align: justify;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .content h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
         footer {
             background-color: #333;
-            color: white;
-            padding: 10px;
+            color: #fff;
             text-align: center;
+            padding: 20px;
+            position: relative;
+            width: 100%;
         }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+
+        footer .social-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.5em;
         }
-        .dark-mode-toggle {
+
+        footer .social-links a:hover {
+            color: #0077b5;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modo oscuro */
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-mode header {
+            background-color: #1e1e1e;
+        }
+
+        .dark-mode footer {
+            background-color: #1e1e1e;
+        }
+
+        .toggle-button {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            padding: 10px;
-            background-color: #333;
+            top: 20px;
+            right: 20px;
+            background-color: #0077b5;
             color: white;
             border: none;
-            border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
         }
-        :root {
-            --background: #ffffff;
-            --text-color: #000000;
+
+        .toggle-button:hover {
+            background-color: #005f85;
         }
-        .dark-mode :root {
-            --background: #121212;
-            --text-color: #ffffff;
-        }
+
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Danny Prowls</h1>
-        <p>"Yo no tengo madera de poeta, solo llevo un par de astillas en el alma"</p>
+
+<header>
+    <h1>Danny Prowls</h1>
+    <p>Yo no tengo madera de poeta, solo llevo un par de astillas en el alma</p>
+    <nav>
+        <a href="#about">Sobre mí</a>
+        <a href="#works">Mis libros</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contacto</a>
+    </nav>
+</header>
+
+<div class="content">
+    <h2 id="about">Sobre mí</h2>
+    <div class="card">
+        <p>Danny Prowls es un escritor comprometido con el arte de la palabra. Su obra, llena de introspección y melancolía, busca plasmar los fragmentos más profundos de la existencia humana. Con una trayectoria que lo ha llevado a conectar con lectores de todo el mundo, Danny ha logrado transmitir emociones a través de su poesía y reflexiones filosóficas.</p>
     </div>
-    <div class="content">
-        <section id="sobre-mi">
-            <h2>Sobre mí</h2>
-            <p>Danny Prowls es un autor que ha ganado reconocimiento por sus "instantáneas literarias", aforismos que capturan momentos de la vida con una fidelidad única. Su enfoque es retratar lo real y elevarlo a través de una potencia poética que resalta las emociones humanas. Prowls estudió enfermería y se formó en anatomía, pero su interés por la filosofía y la muerte lo ha llevado a escribir sobre el impacto emocional de la vida y la pérdida. En 2020, ganó el Premio de Innovación Educativa con su ensayo "Hacia una ciencia de la felicidad" y publicó su primer libro, *Si yo muriera esta noche*. Actualmente, trabaja en su próxima obra.</p>
-        </section>
 
-        <section id="mis-libros">
-            <h2>Mis libros</h2>
-            <ul>
-                <li><strong>Si yo muriera esta noche</strong> (2020) - Una exploración profunda de la vida y la muerte, que aborda el dolor de la pérdida y la búsqueda del sentido.</li>
-                <li><strong>Una Navidad Imposible</strong> (2021) - Colaboración con otros autores, en la que se tratan temas de amor, esperanza y melancolía en tiempos difíciles.</li>
-            </ul>
-        </section>
+    <h2 id="works">Mis libros</h2>
+    <div class="card">
+        <p>Entre sus obras más destacadas se encuentran “Fragmentos del Alma” y “Ecos de un Silencio”. Estas colecciones de poesía invitan al lector a sumergirse en una travesía emocional, explorando temas como el duelo, el amor y la fragilidad de la vida. Próximamente, Danny lanzará su nuevo libro “Sombras del Tiempo”, que promete ser un reflejo aún más profundo de su evolución literaria.</p>
     </div>
 
-    <footer>
-        <div class="social-links">
-            <a href="https://www.facebook.com/dannyprowls">Facebook</a>
-            <a href="https://www.instagram.com/dannyprowls">Instagram</a>
-            <a href="https://www.twitter.com/dannyprowls">Twitter</a>
-        </div>
-        <p>&copy; 2024 Danny Prowls. Todos los derechos reservados.</p>
-    </footer>
+    <h2 id="blog">Blog</h2>
+    <div class="card">
+        <p>En su blog, Danny comparte reflexiones sobre la vida, la poesía y sus experiencias como escritor. Cada entrada es una invitación a dialogar sobre las emociones humanas y el arte de escribir. ¡No te pierdas sus últimas publicaciones!</p>
+    </div>
 
-    <button class="dark-mode-toggle" onclick="toggleDarkMode()">Cambiar a modo oscuro</button>
+    <h2 id="contact">Contacto</h2>
+    <div class="card">
+        <p>Puedes ponerte en contacto con Danny a través de sus redes sociales o enviando un correo electrónico a: contacto@dannyprowls.com.</p>
+    </div>
+</div>
 
-    <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-    </script>
+<footer>
+    <p>Sigue mis redes sociales</p>
+    <div class="social-links">
+        <a href="https://www.facebook.com/tuusuario" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/tuusuario" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.twitter.com/tuusuario" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>&copy; 2024 Danny Prowls. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Botón para cambiar a modo oscuro -->
+<button class="toggle-button" onclick="toggleDarkMode()">Modo Oscuro</button>
+
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+</script>
+
 </body>
 </html>
