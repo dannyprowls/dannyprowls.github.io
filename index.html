@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danny Prowls - Escritor</title>
-    <!-- Importar fuente con serifa -->
+    <title>Mi Página - Danny Prowls</title>
+    <!-- Importar fuente con serifa de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <!-- Importar Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -15,9 +15,9 @@
             color: #333;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
@@ -29,6 +29,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: background-color 0.3s ease;
         }
 
         header h1 {
@@ -37,13 +38,10 @@
         }
 
         header p {
-            margin: 5px 0;
+            margin-top: 5px;
             font-size: 1.2em;
             font-style: italic;
-        }
-
-        nav {
-            margin-top: 15px;
+            font-weight: 400;
         }
 
         nav a {
@@ -62,8 +60,9 @@
             padding: 40px;
             max-width: 800px;
             margin: 0 auto;
-            flex-grow: 1;
             text-align: justify;
+            line-height: 1.8;
+            flex-grow: 1;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 1s ease forwards;
@@ -79,7 +78,6 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -95,6 +93,7 @@
             padding: 20px;
             position: relative;
             width: 100%;
+            transition: background-color 0.3s ease;
         }
 
         footer .social-links a {
@@ -108,6 +107,7 @@
             color: #0077b5;
         }
 
+        /* Animación al hacer scroll */
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -168,22 +168,22 @@
 <div class="content">
     <h2 id="about">Sobre mí</h2>
     <div class="card">
-        <p>Danny Prowls es un escritor comprometido con el arte de la palabra. Su obra, llena de introspección y melancolía, busca plasmar los fragmentos más profundos de la existencia humana. Con una trayectoria que lo ha llevado a conectar con lectores de todo el mundo, Danny ha logrado transmitir emociones a través de su poesía y reflexiones filosóficas.</p>
+        <p>Bienvenidos a mi página personal. Soy Danny Prowls, escritor y apasionado de las letras. Aquí encontrarás información sobre mi obra, mis pensamientos y mis próximos proyectos literarios.</p>
     </div>
 
     <h2 id="works">Mis libros</h2>
     <div class="card">
-        <p>Entre sus obras más destacadas se encuentran “Fragmentos del Alma” y “Ecos de un Silencio”. Estas colecciones de poesía invitan al lector a sumergirse en una travesía emocional, explorando temas como el duelo, el amor y la fragilidad de la vida. Próximamente, Danny lanzará su nuevo libro “Sombras del Tiempo”, que promete ser un reflejo aún más profundo de su evolución literaria.</p>
+        <p>Aquí puedes encontrar información sobre los libros que he publicado y mis próximos lanzamientos. Cada obra ha sido escrita desde el corazón, buscando conectar con las emociones más profundas de los lectores.</p>
     </div>
 
     <h2 id="blog">Blog</h2>
     <div class="card">
-        <p>En su blog, Danny comparte reflexiones sobre la vida, la poesía y sus experiencias como escritor. Cada entrada es una invitación a dialogar sobre las emociones humanas y el arte de escribir. ¡No te pierdas sus últimas publicaciones!</p>
+        <p>Reflexiones sobre la vida, la poesía y todo lo que me inspira a escribir. Visita mi blog para leer mis pensamientos más recientes.</p>
     </div>
 
     <h2 id="contact">Contacto</h2>
     <div class="card">
-        <p>Puedes ponerte en contacto con Danny a través de sus redes sociales o enviando un correo electrónico a: contacto@dannyprowls.com.</p>
+        <p>Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje a través de mis redes sociales o dejarme un correo electrónico.</p>
     </div>
 </div>
 
