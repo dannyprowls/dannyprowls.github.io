@@ -18,6 +18,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         header {
@@ -25,6 +26,10 @@
             padding: 20px;
             text-align: center;
             border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
         }
 
         header h1 {
@@ -39,10 +44,6 @@
             font-weight: 400;
         }
 
-        nav {
-            margin-top: 20px;
-        }
-
         nav a {
             color: #333;
             text-decoration: none;
@@ -52,7 +53,7 @@
         }
 
         nav a:hover {
-            color: #555;
+            color: #0077b5;
         }
 
         .content {
@@ -62,11 +63,27 @@
             text-align: justify;
             line-height: 1.8;
             flex-grow: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease forwards;
         }
 
         .content h2 {
             font-size: 2em;
             margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         footer {
@@ -76,6 +93,7 @@
             padding: 20px;
             position: relative;
             width: 100%;
+            transition: background-color 0.3s ease;
         }
 
         footer .social-links a {
@@ -86,8 +104,52 @@
         }
 
         footer .social-links a:hover {
-            color: #0077b5; /* Color de hover para íconos en el pie de página */
+            color: #0077b5;
         }
+
+        /* Animación al hacer scroll */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modo oscuro */
+        .dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-mode header {
+            background-color: #1e1e1e;
+        }
+
+        .dark-mode footer {
+            background-color: #1e1e1e;
+        }
+
+        .toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #0077b5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .toggle-button:hover {
+            background-color: #005f85;
+        }
+
     </style>
 </head>
 <body>
@@ -105,16 +167,24 @@
 
 <div class="content">
     <h2 id="about">Sobre mí</h2>
-    <p>Bienvenidos a mi página personal. Soy Danny Prowls, escritor y apasionado de las letras. Aquí encontrarás información sobre mi obra, mis pensamientos y mis próximos proyectos literarios.</p>
+    <div class="card">
+        <p>Bienvenidos a mi página personal. Soy Danny Prowls, escritor y apasionado de las letras. Aquí encontrarás información sobre mi obra, mis pensamientos y mis próximos proyectos literarios.</p>
+    </div>
 
     <h2 id="works">Mis libros</h2>
-    <p>Aquí puedes encontrar información sobre los libros que he publicado y mis próximos lanzamientos. Cada obra ha sido escrita desde el corazón, buscando conectar con las emociones más profundas de los lectores.</p>
+    <div class="card">
+        <p>Aquí puedes encontrar información sobre los libros que he publicado y mis próximos lanzamientos. Cada obra ha sido escrita desde el corazón, buscando conectar con las emociones más profundas de los lectores.</p>
+    </div>
 
     <h2 id="blog">Blog</h2>
-    <p>Reflexiones sobre la vida, la poesía y todo lo que me inspira a escribir. Visita mi blog para leer mis pensamientos más recientes.</p>
+    <div class="card">
+        <p>Reflexiones sobre la vida, la poesía y todo lo que me inspira a escribir. Visita mi blog para leer mis pensamientos más recientes.</p>
+    </div>
 
     <h2 id="contact">Contacto</h2>
-    <p>Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje a través de mis redes sociales o dejarme un correo electrónico.</p>
+    <div class="card">
+        <p>Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje a través de mis redes sociales o dejarme un correo electrónico.</p>
+    </div>
 </div>
 
 <footer>
@@ -126,6 +196,15 @@
     </div>
     <p>&copy; 2024 Danny Prowls. Todos los derechos reservados.</p>
 </footer>
+
+<!-- Botón para cambiar a modo oscuro -->
+<button class="toggle-button" onclick="toggleDarkMode()">Modo Oscuro</button>
+
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+</script>
 
 </body>
 </html>
