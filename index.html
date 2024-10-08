@@ -15,6 +15,9 @@
             color: #333;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         header {
@@ -27,6 +30,13 @@
         header h1 {
             margin: 0;
             font-size: 2.5em;
+        }
+
+        header p {
+            margin-top: 5px;
+            font-size: 1.2em;
+            font-style: italic;
+            font-weight: 400;
         }
 
         nav {
@@ -45,27 +55,18 @@
             color: #555;
         }
 
-        .social-links {
-            margin-top: 10px;
-        }
-
-        .social-links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #333;
-            font-size: 1.5em;
-        }
-
-        .social-links a:hover {
-            color: #0077b5; /* Cambia el color al pasar el mouse */
-        }
-
         .content {
             padding: 40px;
             max-width: 800px;
             margin: 0 auto;
             text-align: justify;
             line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        .content h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
         }
 
         footer {
@@ -73,8 +74,7 @@
             color: #fff;
             text-align: center;
             padding: 20px;
-            position: absolute;
-            bottom: 0;
+            position: relative;
             width: 100%;
         }
 
@@ -94,16 +94,12 @@
 
 <header>
     <h1>Danny Prowls</h1>
+    <p>Yo no tengo madera de poeta, solo llevo un par de astillas en el alma</p>
     <nav>
         <a href="#about">Sobre mí</a>
         <a href="#works">Mis libros</a>
+        <a href="#blog">Blog</a>
         <a href="#contact">Contacto</a>
-        <!-- Enlaces a redes sociales con íconos -->
-        <div class="social-links">
-            <a href="https://www.facebook.com/tuusuario" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/tuusuario" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.twitter.com/tuusuario" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
     </nav>
 </header>
 
@@ -113,6 +109,9 @@
 
     <h2 id="works">Mis libros</h2>
     <p>Aquí puedes encontrar información sobre los libros que he publicado y mis próximos lanzamientos. Cada obra ha sido escrita desde el corazón, buscando conectar con las emociones más profundas de los lectores.</p>
+
+    <h2 id="blog">Blog</h2>
+    <p>Reflexiones sobre la vida, la poesía y todo lo que me inspira a escribir. Visita mi blog para leer mis pensamientos más recientes.</p>
 
     <h2 id="contact">Contacto</h2>
     <p>Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje a través de mis redes sociales o dejarme un correo electrónico.</p>
