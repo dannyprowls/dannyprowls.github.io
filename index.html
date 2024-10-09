@@ -6,6 +6,8 @@
     <title>Mi Página - Danny Prowls</title>
     <!-- Importar fuente con serifa de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Importar una fuente más ligera para el lema -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <!-- Importar Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -18,7 +20,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         header {
@@ -29,7 +30,6 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            transition: background-color 0.3s ease;
         }
 
         header h1 {
@@ -37,11 +37,14 @@
             font-size: 2.5em;
         }
 
+        /* Ajuste del lema: letra más ligera y tamaño más pequeño */
         header p {
             margin-top: 5px;
-            font-size: 1em; /* Reducir el tamaño de la fuente del lema */
+            font-family: 'Lora', serif;
+            font-size: 0.9em;
             font-style: italic;
             font-weight: 400;
+            color: #555;
         }
 
         nav a {
@@ -63,9 +66,6 @@
             text-align: justify;
             line-height: 1.8;
             flex-grow: 1;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s ease forwards;
         }
 
         .content h2 {
@@ -86,6 +86,13 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
+        .book-cover {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
         footer {
             background-color: #333;
             color: #fff;
@@ -93,7 +100,6 @@
             padding: 20px;
             position: relative;
             width: 100%;
-            transition: background-color 0.3s ease;
         }
 
         footer .social-links a {
@@ -105,50 +111,6 @@
 
         footer .social-links a:hover {
             color: #0077b5;
-        }
-
-        /* Animación al hacer scroll */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Modo oscuro */
-        .dark-mode {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-
-        .dark-mode header {
-            background-color: #1e1e1e;
-        }
-
-        .dark-mode footer {
-            background-color: #1e1e1e;
-        }
-
-        .toggle-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #0077b5;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1em;
-            z-index: 1001; /* Asegura que esté encima del contenido */
-        }
-
-        .toggle-button:hover {
-            background-color: #005f85;
         }
 
     </style>
@@ -174,38 +136,4 @@
 
     <h2 id="works">Mis libros</h2>
     <div class="card">
-        <p>Aquí puedes encontrar información sobre los libros que he publicado y mis próximos lanzamientos. Cada obra ha sido escrita desde el corazón, buscando conectar con las emociones más profundas de los lectores.</p>
-    </div>
-
-    <h2 id="blog">Blog</h2>
-    <div class="card">
-        <p>Reflexiones sobre la vida, la poesía y todo lo que me inspira a escribir. Visita mi blog para leer mis pensamientos más recientes.</p>
-    </div>
-
-    <h2 id="contact">Contacto</h2>
-    <div class="card">
-        <p>Si deseas ponerte en contacto conmigo, puedes enviarme un mensaje a través de mis redes sociales o dejarme un correo electrónico.</p>
-    </div>
-</div>
-
-<footer>
-    <p>Sigue mis redes sociales</p>
-    <div class="social-links">
-        <a href="https://www.facebook.com/tuusuario" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/tuusuario" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.twitter.com/tuusuario" target="_blank"><i class="fab fa-twitter"></i></a>
-    </div>
-    <p>&copy; 2024 Danny Prowls. Todos los derechos reservados.</p>
-</footer>
-
-<!-- Botón para cambiar a modo oscuro -->
-<button class="toggle-button" onclick="toggleDarkMode()">Modo Oscuro</button>
-
-<script>
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark-mode');
-    }
-</script>
-
-</body>
-</html>
+        <h3>Si
