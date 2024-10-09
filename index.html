@@ -30,6 +30,9 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header h1 {
@@ -47,16 +50,45 @@
             color: #555;
         }
 
-        nav a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.2em;
-            transition: color 0.3s ease;
+        /* Estilos del menú hamburguesa */
+        .menu-toggle {
+            font-size: 2em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background: none;
         }
 
-        nav a:hover {
-            color: #0077b5;
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            transition: right 0.3s ease;
+            z-index: 2000;
+            padding-top: 60px;
+            text-align: center;
+        }
+
+        .menu a {
+            display: block;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        .menu a:hover {
+            background-color: #0077b5;
+        }
+
+        .menu.active {
+            right: 0;
         }
 
         .content {
@@ -86,13 +118,6 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .book-cover {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
         footer {
             background-color: #333;
             color: #fff;
@@ -119,14 +144,18 @@
 
 <header>
     <h1>Danny Prowls</h1>
-    <p>Yo no tengo madera de poeta, solo llevo un par de astillas en el alma</p>
-    <nav>
-        <a href="#about">Sobre mí</a>
-        <a href="#works">Mis libros</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contacto</a>
-    </nav>
+    <button class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
 </header>
+
+<!-- Menú hamburguesa -->
+<nav class="menu" id="menu">
+    <a href="#about">Sobre mí</a>
+    <a href="#works">Mis libros</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contacto</a>
+</nav>
 
 <div class="content">
     <h2 id="about">Sobre mí</h2>
@@ -136,7 +165,7 @@
 
     <h2 id="works">Mis libros</h2>
     <div class="card">
-        <h3>Si yo muriera esta noche (2020)</h3>
+       <h3>Si yo muriera esta noche (2020)</h3>
         <p>Mi primer libro, <em>Si yo muriera esta noche</em>, es una reflexión poética sobre la vida, el dolor y la fragilidad humana. Escribí esta obra con la intención de capturar emociones intensas, ofreciendo una visión íntima sobre la impermanencia y las preguntas que surgen ante la posibilidad de la muerte. El libro invita a los lectores a confrontar sus propios miedos y anhelos, y a explorar lo que significa estar vivo cuando enfrentamos la inminencia de lo inevitable.</p>
         <!-- Aquí puedes incluir una imagen de la portada del libro -->
         <img src="URL_DE_TU_IMAGEN_DE_PORTADA" alt="Portada de Si yo muriera esta noche" class="book-cover">
@@ -161,6 +190,13 @@
     </div>
     <p>&copy; 2024 Danny Prowls. Todos los derechos reservados.</p>
 </footer>
+
+<script>
+    // Función para abrir/cerrar el menú hamburguesa
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('menu').classList.toggle('active');
+    });
+</script>
 
 </body>
 </html>
