@@ -1,171 +1,254 @@
-// main.js ✨
-// Autor: Danny Prowls | Refactorizado por IA
-document.addEventListener('DOMContentLoaded', () => {
+// Navegación móvil
+document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // === NAV MOBILE ===
-    function toggleNav() {
-        const isActive = navToggle.classList.toggle('active');
+    // Toggle del menú móvil
+    navToggle.addEventListener('click', function() {
+        navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
-        navToggle.setAttribute('aria-expanded', isActive);
-        navToggle.setAttribute('aria-label', isActive ? 'Cerrar menú' : 'Abrir menú');
-        document.body.classList.toggle('no-scroll', isActive);
-    }
+    });
 
-    navToggle.setAttribute('aria-label', 'Abrir menú');
-    navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-controls', 'nav');
-
-    navToggle.addEventListener('click', toggleNav);
-
+    // Cerrar menú al hacer clic en un enlace
     navLinks.forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            const target = document.querySelector(link.getAttribute('href'));
-            if (target) {
-                const offset = document.querySelector('.header').offsetHeight;
-                window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
-            }
+        link.addEventListener('click', function() {
             navToggle.classList.remove('active');
             navMenu.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('no-scroll');
         });
     });
 
-    // === SCROLL HEADER ===
-    const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 100);
+    // Smooth scrolling para enlaces internos
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
 
-    // === HERO SCROLL ===
-    document.querySelector('.hero-scroll')?.addEventListener('click', () => {
-        const about = document.querySelector('#sobre-mi');
-        if (about) {
-            const offset = document.querySelector('.header').offsetHeight;
-            window.scrollTo({ top: about.offsetTop - offset, behavior: 'smooth' });
+    // Scroll del hero
+    const heroScroll = document.querySelector('.hero-scroll');
+    if (heroScroll) {
+        heroScroll.addEventListener('click', function() {
+            const aboutSection = document.querySelector('#sobre-mi');
+            if (aboutSection) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = aboutSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+
+    // Efecto de scroll en el header
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(255, 255, 255, 0.98)';
+            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
         }
     });
 
-    // === ANIMACIONES CON INTERSECTION OBSERVER ===
-    const observer = new IntersectionObserver((entries) => {
+    // Animaciones de scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                observer.unobserve(entry.target);
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, observerOptions);
 
-    document.querySelectorAll('.book-card, .blog-card, .about-content, .contact-content')
-        .forEach(el => observer.observe(el));
+    // Observar elementos para animaciones
+    const animatedElements = document.querySelectorAll('.book-card, .blog-card, .about-content, .contact-content');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
 
-    // === FORMULARIO DE CONTACTO ===
+    // Formulario de contacto
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', e => {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const data = new FormData(contactForm);
-            const email = data.get('email');
-            if (!data.get('name') || !email || !data.get('subject') || !data.get('message')) {
+            
+            // Obtener datos del formulario
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+
+            // Validación básica
+            if (!name || !email || !subject || !message) {
                 showNotification('Por favor, completa todos los campos.', 'error');
                 return;
             }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+            if (!isValidEmail(email)) {
                 showNotification('Por favor, ingresa un email válido.', 'error');
                 return;
             }
+
+            // Simular envío (en un sitio real, aquí se enviaría a un servidor)
             showNotification('¡Mensaje enviado correctamente! Te responderé pronto.', 'success');
-            contactForm.reset();
+            this.reset();
         });
     }
 
-    // === NOTIFICACIONES ===
+    // Función para validar email
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    // Función para mostrar notificaciones
     function showNotification(message, type) {
+        // Crear elemento de notificación
         const notification = document.createElement('div');
-        notification.className = \`notification notification-\${type}\`;
+        notification.className = `notification notification-${type}`;
         notification.textContent = message;
-        notification.style.cssText = \`
-            position: fixed; top: 20px; right: 20px;
-            padding: 15px 20px; border-radius: 8px;
-            color: white; font-weight: 600;
-            z-index: 10000; max-width: 300px;
+        
+        // Estilos de la notificación
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            z-index: 10000;
             transform: translateX(100%);
             transition: transform 0.3s ease;
-        \`;
-        notification.style.backgroundColor = type === 'success' ? '#27ae60' : '#e74c3c';
+            max-width: 300px;
+            word-wrap: break-word;
+        `;
 
-        const closeBtn = document.createElement('button');
-        closeBtn.innerHTML = '×';
-        closeBtn.style.cssText = 'margin-left:10px;background:none;border:none;color:white;font-size:1.2rem;cursor:pointer;';
-        closeBtn.addEventListener('click', () => notification.remove());
-        notification.appendChild(closeBtn);
+        if (type === 'success') {
+            notification.style.backgroundColor = '#27ae60';
+        } else if (type === 'error') {
+            notification.style.backgroundColor = '#e74c3c';
+        }
 
+        // Añadir al DOM
         document.body.appendChild(notification);
-        setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+
+        // Mostrar notificación
+        setTimeout(() => {
+            notification.style.transform = 'translateX(0)';
+        }, 100);
+
+        // Ocultar y remover notificación
         setTimeout(() => {
             notification.style.transform = 'translateX(100%)';
-            setTimeout(() => notification.remove(), 300);
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300);
         }, 4000);
     }
 
-    // === PARALLAX HERO ===
-    window.addEventListener('scroll', () => {
+    // Efecto parallax sutil en el hero
+    window.addEventListener('scroll', function() {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero');
         if (hero && scrolled < hero.offsetHeight) {
-            hero.style.transform = \`translateY(\${scrolled * 0.4}px)\`;
-            hero.style.opacity = 1 - scrolled / hero.offsetHeight;
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
         }
     });
 
-    // === LAZY LOAD ===
+    // Lazy loading para imágenes (cuando se añadan)
     if ('IntersectionObserver' in window) {
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        const imgObserver = new IntersectionObserver(entries => {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    if (img.dataset.src && !img.src) {
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        imgObserver.unobserve(img);
-                    }
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
                 }
             });
         });
-        lazyImages.forEach(img => imgObserver.observe(img));
+
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        lazyImages.forEach(img => imageObserver.observe(img));
     }
 
-    // === MODO OSCURO MANUAL ===
-    const themeToggle = document.querySelector('#dark-mode-toggle');
-    const htmlEl = document.documentElement;
-    if (localStorage.getItem('theme') === 'dark') {
-        htmlEl.classList.add('dark');
-    }
-    themeToggle?.addEventListener('click', () => {
-        htmlEl.classList.toggle('dark');
-        localStorage.setItem('theme', htmlEl.classList.contains('dark') ? 'dark' : 'light');
-    });
-
-    // === PREFERENCIA DE MOTION REDUCIDO ===
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        const style = document.createElement('style');
-        style.innerHTML = '* { transition: none !important; animation: none !important; }';
-        document.head.appendChild(style);
-    }
-
-    // === RESPONSIVE: AUTO CIERRE DE MENÚ EN RESIZE ===
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
+    // Mejorar accesibilidad del teclado
+    document.addEventListener('keydown', function(e) {
+        // Cerrar menú móvil con Escape
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
             navToggle.classList.remove('active');
             navMenu.classList.remove('active');
-            document.body.classList.remove('no-scroll');
         }
     });
 
-    console.log('✨ Sitio web cargado y listo.');
+    // Detectar si el usuario prefiere movimiento reducido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    if (prefersReducedMotion.matches) {
+        // Desactivar animaciones para usuarios que prefieren movimiento reducido
+        const style = document.createElement('style');
+        style.textContent = `
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Función para manejar el redimensionamiento de ventana
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            // Cerrar menú móvil si se redimensiona a desktop
+            if (window.innerWidth > 768) {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        }, 250);
+    });
+
+    // Precargar contenido crítico
+    const criticalResources = [
+        'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap'
+    ];
+
+    criticalResources.forEach(resource => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'style';
+        link.href = resource;
+        document.head.appendChild(link);
+    });
+
+    console.log('Sitio web de Danny Prowls cargado correctamente ✨');
 });
+
