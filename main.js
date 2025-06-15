@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Detectar si el usuario prefiere movimiento reducido
+    // Detectar si el usuario prefiere el movimiento reducido
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     
     if (prefersReducedMotion.matches) {
