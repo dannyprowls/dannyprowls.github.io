@@ -259,6 +259,7 @@ body {
 /* Secciones */
 section {
     padding: var(--section-padding);
+    scroll-margin-top: 70px; /* Añadir margen para el header fijo */
 }
 
 .section-header {
@@ -290,6 +291,7 @@ section {
 /* Sobre mí */
 .about {
     background-color: var(--light-gray);
+    padding-top: calc(var(--section-padding) + 70px); /* Añadir espacio extra para el header */
 }
 
 .about-content {
