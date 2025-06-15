@@ -1,4 +1,4 @@
-// main.optimizado.js ✨
+// main.js ✨
 // Autor: Danny Prowls | Refactorizado por IA
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
