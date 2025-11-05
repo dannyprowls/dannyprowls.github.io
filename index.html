@@ -3,237 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danny Prowls - Escritor</title>
-    <meta name="description" content="Danny Prowls - Escritor y apasionado de las letras. Explora mi obra literaria y únete a mi viaje a través de las palabras.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Danny Prowls - Escritor y Libros Raros</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <h1 class="brand-name">Danny Prowls</h1>
-            </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#inicio" class="nav-link">Inicio</a>
-                <a href="#sobre-mi" class="nav-link">Sobre mí</a>
-                <a href="#libros" class="nav-link">Mis libros</a>
-                <a href="#blog" class="nav-link">Blog</a>
-                <a href="#contacto" class="nav-link">Contacto</a>
-            </div>
-            <div class="nav-controls">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
-                    <span class="theme-icon">🌙</span>
-                </button>
-                <button class="menu-toggle" id="menu-toggle" aria-label="Menú">
-                    <span class="hamburger"></span>
-                </button>
+        <nav class="navbar">
+            <div class="logo">Danny Prowls</div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#sobre-mi">Sobre mí</a>
+                <a href="#libros">Mis libros</a>
+                <a href="#blog">Blog</a>
+                <a href="#libros-raros">Libros Raros</a>
+                <a href="#contacto">Contacto</a>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Danny Prowls</h1>
-            <p class="hero-quote">"Yo no tengo madera de poeta, solo llevo un par de astillas en el alma"</p>
-            <p class="hero-description">Escritor y apasionado de las letras. Explora mi obra literaria y únete a mi viaje a través de las palabras.</p>
-            <div class="hero-buttons">
-                <a href="#libros" class="btn btn-primary">Descubre mis libros</a>
-                <a href="#contacto" class="btn btn-secondary">Contacto</a>
-            </div>
-        </div>
-        <div class="hero-scroll">
-            <span class="scroll-text">Desliza para explorar</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="sobre-mi" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">Sobre mí</h2>
-                    <p class="about-intro">Bienvenidos a mi página personal. Soy Danny Prowls, escritor y apasionado de las letras.</p>
-                    <p>Aquí encontrarás información sobre mi obra, mis pensamientos y mis próximos proyectos literarios. Mi escritura nace de la necesidad de explorar las emociones humanas más profundas, de dar voz a aquellos sentimientos que a menudo permanecen en silencio.</p>
-                    <p>Cada palabra que escribo es un intento de conectar con el alma del lector, de crear puentes entre experiencias compartidas y de encontrar belleza en la fragilidad de nuestra existencia.</p>
-                    <blockquote class="quote">
-                        "La literatura es el arte de descubrir algo extraordinario sobre personas ordinarias, y decir con palabras ordinarias algo extraordinario."
-                    </blockquote>
-                    <div class="social-links">
-                        <a href="https://instagram.com/u/escritosdannyprowls" target="_blank" rel="noopener" class="social-link">
-                            <span class="social-icon">📷</span>
-                            Instagram
-                        </a>
-                        <a href="https://facebook.com/MrDannyProwls" target="_blank" rel="noopener" class="social-link">
-                            <span class="social-icon">📘</span>
-                            Facebook
-                        </a>
-                    </div>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Danny Prowls</h1>
+                <p class="hero-quote">"Yo no tengo madera de poeta, solo llevo un par de astillas en el alma"</p>
+                <p class="hero-description">Escritor y apasionado de las letras. Explora mi obra literaria y únete a mi viaje a través de las palabras.</p>
+                <div class="hero-buttons">
+                    <a href="#libros" class="btn btn-primary">Descubre mis libros</a>
+                    <a href="#contacto" class="btn btn-outline">Contacto</a>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <span class="placeholder-text">Fotografía de Danny Prowls</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre-mi" class="section about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2 class="section-title">Sobre mí</h2>
+                        <p class="about-text">Bienvenidos a mi página personal. Soy Danny Prowls, escritor y apasionado de las letras.</p>
+                        <p class="about-text">Aquí encontrarás información sobre mi obra, mis pensamientos y mis próximos proyectos literarios. Mi escritura nace de la necesidad de explorar las emociones humanas más profundas, de dar voz a aquellos sentimientos que a menudo permanecen en silencio.</p>
+                        <p class="about-text">Cada palabra que escribo es un intento de conectar con el alma del lector, de crear puentes entre experiencias compartidas y de encontrar belleza en la fragilidad de nuestra existencia.</p>
+                        <div class="social-links">
+                            <a href="https://instagram.com/u/escritosdannyprowls" target="_blank" class="social-btn">📷 Instagram</a>
+                            <a href="https://facebook.com/MrDannyProwls" target="_blank" class="social-btn">📘 Facebook</a>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="placeholder">Fotografía de Danny Prowls</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Books Section -->
-    <section id="libros" class="books">
-        <div class="container">
-            <h2 class="section-title">Mis libros</h2>
-            <p class="section-subtitle">Explora mi obra literaria y sumérgete en mundos de emociones y reflexiones.</p>
-            
-            <div class="book-featured">
-                <div class="book-cover">
-                    <div class="cover-placeholder">
-                        <span class="cover-title">Si yo muriera esta noche</span>
-                    </div>
-                </div>
-                <div class="book-info">
-                    <h3 class="book-title">Si yo muriera esta noche</h3>
-                    <span class="book-year">2020</span>
-                    <p class="book-description">Mi primer libro, una reflexión poética sobre la vida, el dolor y la fragilidad humana. Escribí esta obra con la intención de capturar emociones intensas, ofreciendo una visión íntima sobre la impermanencia y las preguntas que surgen ante la posibilidad de la muerte.</p>
-                    <p class="book-description">El libro invita a los lectores a confrontar sus propios miedos y anhelos, y a explorar lo que significa estar vivo cuando enfrentamos la inminencia de lo inevitable.</p>
-                    <div class="book-actions">
-                        <a href="#" class="btn btn-outline">Leer fragmento</a>
-                        <a href="https://a.co/d/iWvcUCE" target="_blank" rel="noopener" class="btn btn-primary">Comprar</a>
+        <!-- Books Section -->
+        <section id="libros" class="section books-section">
+            <div class="container">
+                <h2 class="section-title">Mis libros</h2>
+                <p class="section-subtitle">Explora mi obra literaria y sumérgete en mundos de emociones y reflexiones.</p>
+                <div class="book-card">
+                    <div class="book-cover">Si yo muriera esta noche</div>
+                    <div class="book-info">
+                        <h3>Si yo muriera esta noche</h3>
+                        <span class="badge">2020</span>
+                        <p>Mi primer libro, una reflexión poética sobre la vida, el dolor y la fragilidad humana. Escribí esta obra con la intención de capturar emociones intensas, ofreciendo una visión íntima sobre la impermanencia y las preguntas que surgen ante la posibilidad de la muerte.</p>
+                        <p>El libro invita a los lectores a confrontar sus propios miedos y anhelos, y a explorar lo que significa estar vivo cuando enfrentamos la inminencia de lo inevitable.</p>
+                        <div class="book-buttons">
+                            <a href="#" class="btn btn-outline">Leer fragmento</a>
+                            <a href="https://a.co/d/iWvcUCE" target="_blank" class="btn btn-primary">Comprar</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <h2 class="section-title">Blog</h2>
-            <p class="section-subtitle">Reflexiones, pensamientos y el proceso creativo detrás de mis obras.</p>
-            
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-meta">
+        <!-- Blog Section -->
+        <section id="blog" class="section blog-section">
+            <div class="container">
+                <h2 class="section-title">Blog</h2>
+                <p class="section-subtitle">Reflexiones, pensamientos y el proceso creativo detrás de mis obras.</p>
+                <div class="blog-grid">
+                    <div class="blog-card">
                         <span class="blog-category">Reflexiones</span>
-                        <span class="blog-status">Próximamente</span>
+                        <h3>El proceso creativo de un escritor</h3>
+                        <p>Una mirada íntima al proceso de creación literaria...</p>
+                        <a href="#" class="read-more">Leer más</a>
                     </div>
-                    <h3 class="blog-title">El proceso creativo de un escritor</h3>
-                    <p class="blog-excerpt">Una mirada íntima al proceso de creación literaria, desde la primera idea hasta la palabra final...</p>
-                    <a href="#" class="blog-link">Leer más</a>
-                </article>
-                
-                <article class="blog-card">
-                    <div class="blog-meta">
+                    <div class="blog-card">
                         <span class="blog-category">Literatura</span>
-                        <span class="blog-status">Próximamente</span>
+                        <h3>La importancia de las emociones en la literatura</h3>
+                        <p>Una mirada íntima al proceso de creación literaria...</p>
+                        <a href="#" class="read-more">Leer más</a>
                     </div>
-                    <h3 class="blog-title">La importancia de las emociones en la literatura</h3>
-                    <p class="blog-excerpt">Explorando cómo las emociones dan vida a los personajes y conectan con los lectores...</p>
-                    <a href="#" class="blog-link">Leer más</a>
-                </article>
-                
-                <article class="blog-card">
-                    <div class="blog-meta">
+                    <div class="blog-card">
                         <span class="blog-category">Inspiración</span>
-                        <span class="blog-status">Próximamente</span>
+                        <h3>Encontrando inspiración en lo cotidiano</h3>
+                        <p>Una mirada íntima al proceso de creación literaria...</p>
+                        <a href="#" class="read-more">Leer más</a>
                     </div>
-                    <h3 class="blog-title">Encontrando inspiración en lo cotidiano</h3>
-                    <p class="blog-excerpt">Cómo los momentos más simples pueden convertirse en las historias más poderosas...</p>
-                    <a href="#" class="blog-link">Leer más</a>
-                </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2 class="section-title">Contacto</h2>
-                    <p class="contact-description">¿Tienes alguna pregunta sobre mi obra o te gustaría colaborar? Me encantaría escuchar de ti.</p>
-                    
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <span class="contact-icon">✉️</span>
-                            <div class="contact-details">
+        <!-- Rare Books Section -->
+        <section id="libros-raros" class="section rare-books-section">
+            <div class="container">
+                <h2 class="section-title">Libros Raros y Primeras Ediciones</h2>
+                <p class="section-subtitle">Un espacio dedicado a la compra y venta de ejemplares únicos, valorados por su rareza, antigüedad o por ser primeras ediciones.</p>
+                <div class="books-grid">
+                    <div class="rare-book-card">
+                        <span class="badge">Disponible</span>
+                        <div class="book-placeholder">Portada del Libro</div>
+                        <h3>Título del Libro</h3>
+                        <p class="author">Autor Destacado</p>
+                        <div class="book-tags">
+                            <span class="tag">Primera Edición</span>
+                            <span class="tag">1950</span>
+                        </div>
+                        <p class="book-condition">Estado: Excelente</p>
+                        <p class="book-price">$XXX</p>
+                        <a href="#" class="btn btn-outline">Ver Detalles</a>
+                    </div>
+                    <div class="rare-book-card featured">
+                        <span class="badge badge-featured">Destacado</span>
+                        <div class="book-placeholder">Portada del Libro</div>
+                        <h3>Título del Libro</h3>
+                        <p class="author">Autor Reconocido</p>
+                        <div class="book-tags">
+                            <span class="tag">Edición Firmada</span>
+                            <span class="tag">1988</span>
+                        </div>
+                        <p class="book-condition">Estado: Excelente</p>
+                        <p class="book-price">$XXX</p>
+                        <a href="#" class="btn btn-outline">Ver Detalles</a>
+                    </div>
+                    <div class="rare-book-card">
+                        <span class="badge">Disponible</span>
+                        <div class="book-placeholder">Portada del Libro</div>
+                        <h3>Título del Libro</h3>
+                        <p class="author">Autor Clásico</p>
+                        <div class="book-tags">
+                            <span class="tag">Edición Limitada</span>
+                            <span class="tag">2001</span>
+                        </div>
+                        <p class="book-condition">Estado: Excelente</p>
+                        <p class="book-price">$XXX</p>
+                        <a href="#" class="btn btn-outline">Ver Detalles</a>
+                    </div>
+                </div>
+                <div class="sell-section">
+                    <h3>¿Tienes un ejemplar único para vender?</h3>
+                    <p>Te ayudamos a valorarlo y a encontrar un coleccionista. Contáctanos para iniciar el proceso de tasación y venta.</p>
+                    <a href="#contacto" class="btn btn-primary">Vender mi libro</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="section contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2 class="section-title">Contacto</h2>
+                        <p>¿Tienes alguna pregunta sobre mi obra o te gustaría colaborar? Me encantaría escuchar de ti.</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
                                 <h4>Email</h4>
                                 <p>contacto@dannyprowls.com</p>
                             </div>
-                        </div>
-                        
-                        <div class="contact-method">
-                            <span class="contact-icon">📱</span>
-                            <div class="contact-details">
+                            <div class="contact-item">
                                 <h4>Redes sociales</h4>
                                 <p>Sígueme en Instagram y Facebook</p>
                             </div>
                         </div>
                     </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Asunto</label>
+                            <input type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mensaje</label>
+                            <textarea rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                    </form>
                 </div>
-                
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="subject">Asunto</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Mensaje</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-                </form>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
+            <div class="footer-grid">
+                <div>
                     <h3>Danny Prowls</h3>
                     <p>Escritor y apasionado de las letras</p>
                 </div>
-                
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h4>Navegación</h4>
-                        <ul>
-                            <li><a href="#inicio">Inicio</a></li>
-                            <li><a href="#sobre-mi">Sobre mí</a></li>
-                            <li><a href="#libros">Mis libros</a></li>
-                            <li><a href="#blog">Blog</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Sígueme</h4>
-                        <ul>
-                            <li><a href="https://instagram.com/u/escritosdannyprowls" target="_blank" rel="noopener">Instagram</a></li>
-                            <li><a href="https://facebook.com/MrDannyProwls" target="_blank" rel="noopener">Facebook</a></li>
-                        </ul>
-                    </div>
+                <div>
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sobre-mi">Sobre mí</a></li>
+                        <li><a href="#libros">Mis libros</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Sígueme</h4>
+                    <ul>
+                        <li><a href="https://instagram.com/u/escritosdannyprowls" target="_blank">Instagram</a></li>
+                        <li><a href="https://facebook.com/MrDannyProwls" target="_blank">Facebook</a></li>
+                    </ul>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>&copy; 2025 Danny Prowls. Todos los derechos reservados.</p>
             </div>
@@ -243,4 +238,3 @@
     <script src="main.js"></script>
 </body>
 </html>
-
