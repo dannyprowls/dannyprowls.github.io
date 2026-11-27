@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía de errores · App RITA</title>
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --ink: #1f2433;
+      --mut: #5b6377;
+      --card: #fff;
+      --line: #e3e6ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    header {
+      background: linear-gradient(135deg, #1f1f2e, #34345a);
+      color: #fff;
+      padding: 36px 20px 70px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+    }
+
+    header p {
+      margin: 0;
+      opacity: .85;
+    }
+
+    .wrap {
+      max-width: 1050px;
+      margin: -42px auto 40px;
+      padding: 0 16px;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 28px rgba(20, 20, 50, .18);
+      padding: 6px 10px;
+    }
+
+    .search svg {
+      width: 22px;
+      height: 22px;
+      margin: 0 8px;
+      color: #8a90a6;
+      flex: none;
+    }
+
+    .search input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      font-size: 1.1rem;
+      padding: 14px 6px;
+      background: transparent;
+      color: var(--ink);
+      min-width: 0;
+    }
+
+    .search button {
+      border: 0;
+      background: #eef0f7;
+      color: #555;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: .9rem;
+    }
+
+    .hint {
+      color: var(--mut);
+      font-size: .88rem;
+      margin: 10px 4px 0;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 6px;
+    }
+
+    .chip {
+      border: 2px solid var(--c);
+      color: var(--c);
+      background: #fff;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-weight: 600;
+      font-size: .88rem;
+      cursor: pointer;
+      transition: .15s;
+    }
+
+    .chip.on {
+      background: var(--c);
+      color: #fff;
+    }
+
+    .count {
+      color: var(--mut);
+      margin: 10px 4px 14px;
+      font-size: .92rem;
+    }
+
+    .card {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 10px rgba(30, 30, 70, .07);
+      border: 1px solid var(--line);
+    }
+
+    .err {
+      background: var(--bg2);
+      border-left: 6px solid var(--c);
+      padding: 16px 18px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--c);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      border-radius: 6px;
+      padding: 3px 8px;
+      text-transform: uppercase;
+    }
+
+    .msg {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: .95rem;
+      font-weight: 600;
+      margin: 10px 0 8px;
+      word-break: break-word;
+      color: #1b1f2e;
+    }
+
+    .mean {
+      color: #394056;
+      font-size: .93rem;
+      line-height: 1.45;
+    }
+
+    .sol {
+      padding: 16px 20px;
+    }
+
+    .sol h3 {
+      margin: 0 0 8px;
+      font-size: .8rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--mut);
+    }
+
+    .sol ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .sol li {
+      margin: 6px 0;
+      line-height: 1.45;
+      font-size: .94rem;
+    }
+
+    mark {
+      background: #ffe27a;
+      border-radius: 3px;
+      padding: 0 1px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 40px 16px;
+      color: var(--mut);
+      background: #fff;
+      border-radius: 14px;
+      border: 1px dashed #c9cedd;
+    }
+
+    .report {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-top: 26px;
+      border: 1px solid var(--line);
+    }
+
+    .report h2 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .report li {
+      margin: 5px 0;
+      font-size: .93rem;
+    }
+
+    footer {
+      color: var(--mut);
+      font-size: .8rem;
+      text-align: center;
+      margin: 22px 0 4px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 720px) {
+      .card {
+        grid-template-columns: 1fr;
+      }
+
+      .sol {
+        border-top: 1px solid var(--line);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Guía de errores App RITA</h1>
+    <p>Consulta el error desde la barra de búsqueda, puedes utilizar palabras clave</p>
+  </header>
+
+  <div class="wrap">
+
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="m20 20-3.5-3.5"/>
+      </svg>
+      <input id="q" type="search" placeholder="Ej.: S3 timed out, taskId, COHN, no encuentra redes…" autocomplete="off" autofocus>
+      <button id="clr" type="button">Borrar</button>
+    </div>
+
+    <p class="hint">Consejo: pega el mensaje de error o escribe una palabra clave.</p>
+
+    <div class="chips" id="chips"></div>
+    <div class="count" id="count"></div>
+    <div id="list"></div>
+
+    <div class="report">
+      <h2>¿No encuentras tu error? Cómo reportarlo</h2>
+      <ul>
+        <li>Copia el mensaje completo, con el código <b>ref (E-…)</b> si aparece.</li>
+        <li>Solicita ayuda en el grupo de WhatsApp.</li>
+        <li>En caso de no encontrar una solución, dirígete a Slack y en el grupo Internal notifica el error a Chema (@chema).</li>
+        <li><b>No borres clips de la cámara.</b></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>Si encuentras un error que no esté registrado, documéntalo para que podamos incorporarlo a esta guía.</footer>
+
+  <script id="data" type="application/json">
+    {
+      "E": [
+        {
+          "cat": "subida",
+          "msg": "S3 part PUT timed out after 300000ms",
+          "meaning": "Una parte del video no terminó de subirse a la nube (S3) dentro del tiempo límite de la app (300000 ms o 5 min). El archivo no está dañado.",
+          "steps": [
+            "Deja la app abierta con la pantalla encendida y el teléfono cargando.",
+            "Excluye la app del ahorro de batería y de las apps en suspensión.",
+            "Acércate al módem o cambia de red; revisa la velocidad de SUBIDA, no la de bajada.",
+            "Reintenta con un clip a la vez: Catálogo > Reintentar subida.",
+            "Si falla con buena red, reporta el mensaje exacto."
+          ],
+          "kw": "s3 timeout 30000 300000 tiempo agotado put parte subir lenta"
+        },
+        {
+          "cat": "subida",
+          "msg": "Network error during S3 upload",
+          "meaning": "Se cortó la red mientras se enviaba una parte del video.",
+          "steps": [
+            "Revisa que el Wi-Fi tenga Internet.",
+            "Evita cambiar de red durante la subida.",
+            "Reintenta la subida desde Catálogo."
+          ],
+          "kw": "red conexion s3 subir"
+        },
+        {
+          "cat": "subida",
+          "msg": "Upload aborted",
+          "meaning": "La subida se canceló, por ti o por la app.",
+          "steps": [
+            "Vuelve a lanzar la subida desde Catálogo > Reintentar subida.",
+            "Si la cancelaste a propósito, no hace falta hacer nada."
+          ],
+          "kw": "abortada cancelada"
+        },
+        {
+          "cat": "subida",
+          "msg": "El backend no devolvió taskId al completar la subida",
+          "meaning": "La subida terminó, pero el servidor de Remotasks no devolvió el ID de la tarea. Es un fallo del lado del servidor.",
+          "steps": [
+            "No borres los clips del teléfono ni de la cámara.",
+            "Cierra sesión, entra de nuevo y reintenta",
+            "Reporta en Slack: mensaje, código ref (E-…), número de clips."
+          ],
+          "kw": "taskid backend servidor completar tarea"
+        },
+        {
+          "cat": "subida",
+          "msg": "No se puede finalizar la grabación como subida sin un taskId del backend",
+          "meaning": "Consecuencia del error anterior: la app no puede marcar la grabación como subida si el servidor no dio un taskId.",
+          "steps": [
+            "Sigue los pasos del error \"El backend no devolvió taskId\"."
+          ],
+          "kw": "taskid finalizar"
+        },
+        {
+          "cat": "subida",
+          "msg": "El backend todavía no devolvió el clip con checksum <hash>",
+          "meaning": "El servidor aún no registra el clip.",
+          "steps": [
+            "Espera unos minutos y reintenta.",
+            "Si persiste, reporta en Slack."
+          ],
+          "kw": "checksum backend registra"
+        },
+        {
+          "cat": "subida",
+          "msg": "Falta el checksum de <archivo> — vuelve a descargar la grabación",
+          "meaning": "El clip local no tiene su verificación (checksum), normalmente porque la descarga quedó incompleta.",
+          "steps": [
+            "Conecta la cámara a la app.",
+            "Vuelve a descargar el clip desde Catálogo.",
+            "Reintenta la subida."
+          ],
+          "kw": "checksum descarga incompleta"
+        },
+        {
+          "cat": "subida",
+          "msg": "La grabación no tiene proyecto — elige proyecto y actividad antes de subir",
+          "meaning": "Intentaste subir una grabación sin proyecto o actividad.",
+          "steps": [
+            "Entra a Catálogo > Editar actividad.",
+            "Elige proyecto y actividad.",
+            "Guarda y reintenta."
+          ],
+          "kw": "proyecto actividad"
+        },
+        {
+          "cat": "subida",
+          "msg": "LRV <clip>: tamaño en disco",
+          "meaning": "El archivo guardado en el teléfono no coincide en tamaño con el registrado: descarga incompleta o archivo borrado.",
+          "steps": [
+            "Conecta la cámara y vuelve a descargar el clip.",
+            "Libera espacio en el teléfono si está lleno."
+          ],
+          "kw": "lrv tamaño disco"
+        },
+        {
+          "cat": "subida",
+          "msg": "clip <nombre> has no LRV on disk",
+          "meaning": "El clip no tiene el archivo local (LRV) necesario para procesarlo.",
+          "steps": [
+            "Conecta la cámara.",
+            "Elige el clip de nuevo y reintenta."
+          ],
+          "kw": "lrv falta archivo"
+        },
+        {
+          "cat": "subida",
+          "msg": "Timed out: the recording made no progress for 2 min",
+          "meaning": "La grabación estuvo 2 minutos sin avanzar en el procesamiento.",
+          "steps": [
+            "Mantén la app abierta y en primer plano.",
+            "Verifica que las cámaras sigan conectadas.",
+            "Reintenta desde Catálogo."
+          ],
+          "kw": "sin progreso 2 min"
+        },
+        {
+          "cat": "subida",
+          "msg": "No clips selected / Pick a project and activity first",
+          "meaning": "Falta elegir clips, proyecto o actividad.",
+          "steps": [
+            "Selecciona un clip por cámara.",
+            "Elige proyecto y actividad antes de continuar."
+          ],
+          "kw": "seleccionar clips"
+        },
+        {
+          "cat": "subida",
+          "msg": "No se pudo encolar la subida: <error>",
+          "meaning": "La app no pudo poner el clip en la fila de subida.",
+          "steps": [
+            "Lee el detalle después de los dos puntos.",
+            "Reintenta; si falla, reporta."
+          ],
+          "kw": "encolar subida"
+        },
+        {
+          "cat": "subida",
+          "msg": "El reintento falló: <error>",
+          "meaning": "El nuevo intento de subida también falló.",
+          "steps": [
+            "Revisa red y batería.",
+            "Copia el detalle del error y repórtalo si se repite."
+          ],
+          "kw": "reintento"
+        },
+        {
+          "cat": "subida",
+          "msg": "No se pudo calcular el hash del archivo: <error>",
+          "meaning": "La app no pudo leer el archivo para verificarlo.",
+          "steps": [
+            "Libera espacio.",
+            "Vuelve a intentarlo."
+          ],
+          "kw": "hash archivo"
+        },
+        {
+          "cat": "cuenta",
+          "msg": "No aparece el proyecto.",
+          "meaning": "La cuenta del negocio no tiene asignado el proyecto.",
+          "steps": [
+            "Envía un DM a Chema (@chema) respondiendo al mensaje donde te compartió las credenciales del negocio con el proyecto que se asignará.",
+            "En ese mismo mensaje, envía las Escenas (áreas de trabajo que tendrá el negocio).",
+            "Procura hacer esto antes del Onboarding"
+          ],
+          "kw": "permiso proyecto"
+        },
+        {
+          "cat": "cuenta",
+          "msg": "Esta grabación ya fue enviada (se detectó un duplicado).",
+          "meaning": "El servidor detectó que ese clip ya existe (mismo checksum).",
+          "steps": [
+            "No lo vuelvas a subir.",
+            "Revisa en \"Enviadas\" si ya aparece."
+          ],
+          "kw": "duplicado enviada"
+        },
+        {
+          "cat": "cuenta",
+          "msg": "Actualización requerida — Necesitas actualizar la app para seguir usando RITA",
+          "meaning": "La versión instalada ya no es compatible.",
+          "steps": [
+            "Actualiza desde Google Play.",
+            "Reinicia la app."
+          ],
+          "kw": "actualizar version"
+        },
+        {
+          "cat": "cuenta",
+          "msg": "ritaApiFetch not available / ritaUserId not available",
+          "meaning": "La appweb no logró conectarse.",
+          "steps": [
+            "Cierra sesión y vuelve a entrar.",
+            "Cierra la app por completo y ábrela de nuevo.",
+            "Si persiste, actualiza o reinstala."
+          ],
+          "kw": "sesion usuario api"
+        },
+        {
+          "cat": "red",
+          "msg": "COHN proxy config failed: HTTP 404 <!DOCTYPE html>…",
+          "meaning": "La app no se ejecutó correctamente.",
+          "steps": [
+            "Cierra la app por completo y ábrela de nuevo.",
+            "Si sigue, revisa si hay alguna actualización, en su defecto, reinstala la app (solo recuerda que se borran de la lista los videos pendientes por subir y hay que añadirlos de nuevo manualmente)."
+          ],
+          "kw": "404 html remotasks proxy cohn wifi no disponible verificar"
+        },
+        {
+          "cat": "red",
+          "msg": "Wi-Fi no disponible: Verificar falló",
+          "meaning": "El último paso de la configuración (verificar que la cámara funciona en tu red) no se completó.",
+          "steps": [
+            "Confirma que el teléfono y las cámaras están en la misma red Wi-Fi.",
+            "Usa la banda de 2.4 GHz y desactiva aislamiento de clientes y portales cautivos.",
+            "Apaga VPN, DNS privado y proxies en el teléfono.",
+            "Pulsa \"Reintentar Wi-Fi\"."
+          ],
+          "kw": "verificar fallo wifi"
+        },
+        {
+          "cat": "red",
+          "msg": "No se encontraron redes. Asegúrate de que el Wi-Fi esté encendido y busca de nuevo.",
+          "meaning": "La búsqueda de redes no encontró conexiones disponibles.",
+          "steps": [
+            "Enciende el Wi-Fi y espera 20–30 segundos.",
+            "Pulsa \"Buscar de nuevo\".",
+            "Revisa los permisos de la aplicación en la configuración del teléfono.",
+            "Como último recurso, escribe el nombre de la red a mano."
+          ],
+          "kw": "sin redes lista vacia buscar"
+        },
+        {
+          "cat": "red",
+          "msg": "Android necesita la ubicación activada para buscar redes Wi-Fi",
+          "meaning": "Android exige la ubicación encendida para escanear redes.",
+          "steps": [
+            "Ajustes > Ubicación: actívala.",
+            "Vuelve a buscar redes en la app."
+          ],
+          "kw": "ubicacion android gps"
+        },
+        {
+          "cat": "red",
+          "msg": "Se denegó el permiso para encontrar redes cercanas",
+          "meaning": "La app no tiene permiso de \"Dispositivos cercanos\" o ubicación precisa.",
+          "steps": [
+            "En el teléfono, entra a Ajustes > Apps > Rita App > Permisos.",
+            "Concede Ubicación precisa y Dispositivos cercanos.",
+            "En Samsung/Honor/Huawei/Oppo/Motorola, quita la app de las apps suspendidas automáticamente y pon la batería en \"Sin restricciones\".",
+            "Reabre la app."
+          ],
+          "kw": "permiso dispositivos redes cercanas"
+        },
+        {
+          "cat": "red",
+          "msg": "No se pudo buscar: <WiFi al que conectaste la app>",
+          "meaning": "El escaneo de redes falló por un error del sistema.",
+          "steps": [
+            "Reinicia el Wi-Fi del teléfono.",
+            "Revisa permisos y ubicación.",
+            "Escribe el nombre de la red manualmente."
+          ],
+          "kw": "buscar escaneo Wi-Fi Wifi"
+        },
+        {
+          "cat": "red",
+          "msg": "Contraseña de Wi-Fi incorrecta",
+          "meaning": "La cámara no pudo entrar a tu red porque la contraseña es incorrecta.",
+          "steps": [
+            "Revisa mayúsculas y símbolos.",
+            "Pulsa \"Mostrar contraseña\" para verificarla.",
+            "Reintenta."
+          ],
+          "kw": "password contraseña wifi"
+        },
+        {
+          "cat": "red",
+          "msg": "Bloqueado por la página de inicio de sesión de la red (EULA)",
+          "meaning": "La red muestra un portal cautivo que la cámara no puede pasar.",
+          "steps": [
+            "Usa otra red sin portal de acceso (No te conectes a la red del C5, usa tu red doméstica)."
+          ],
+          "kw": "eula portal cautivo"
+        },
+        {
+          "cat": "red",
+          "msg": "La red no tiene acceso a Internet",
+          "meaning": "La cámara se vinculó, pero la red no tiene Internet.",
+          "steps": [
+            "Verifica que el módem tenga Internet.",
+            "Prueba con otra red"
+          ],
+          "kw": "acceso sin internet"
+        },
+        {
+          "cat": "red",
+          "msg": "Tipo de red no soportado por la cámara",
+          "meaning": "La cámara no soporta ese tipo de red (por ejemplo, 5 GHz o seguridad empresarial).",
+          "steps": [
+            "Usa una red WPA2 normal de 2.4 GHz.",
+            "Activa esa banda en el módem.",
+            "Revisa que la cámara trabaje con la misma banda que la red Wi-Fi a la que te conectaste"
+          ],
+          "kw": "5ghz tipo red"
+        },
+        {
+          "cat": "red",
+          "msg": "No se pudo alcanzar la red (fuera de alcance o señal débil)",
+          "meaning": "La señal Wi-Fi es deficiente y la cámara no logra conectarse",
+          "steps": [
+            "Acerca la cámara al módem para descartar fallos en la cámara."
+          ],
+          "kw": "alcance señal debil"
+        },
+        {
+          "cat": "red",
+          "msg": "Conexión cancelada / Conexión abortada por la cámara",
+          "meaning": "La cámara interrumpió la conexión o el usuario la canceló.",
+          "steps": [
+            "Reinicia la cámara.",
+            "Restablece conexiones: Preferencias > Conexiones > Restablecer conexiones.",
+            "Reintenta."
+          ],
+          "kw": "conexión cancelada abortada"
+        },
+        {
+          "cat": "red",
+          "msg": "No hay una red Wi-Fi configurada. Define el SSID en Configuración.",
+          "meaning": "Falta el nombre de la red.",
+          "steps": [
+            "Entra a Configuración.",
+            "Elige o escribe el nombre y la contraseña."
+          ],
+          "kw": "no hay red ssid configurar"
+        },
+        {
+          "cat": "red",
+          "msg": "SSID is required / Password is required",
+          "meaning": "Falta el nombre o la contraseña de Wi-Fi.",
+          "steps": [
+            "Complétalos en la sección Configuración."
+          ],
+          "kw": "ssid password"
+        },
+        {
+          "cat": "red",
+          "msg": "CohnService not initialized — call await initCohnService()",
+          "meaning": "El servicio COHN (Camera On the Home Network) no arrancó al abrir la app.",
+          "steps": [
+            "Cierra la app por completo y ábrela de nuevo.",
+            "Si se repite, reinstala."
+          ],
+          "kw": "cohn servicio inicializar"
+        },
+        {
+          "cat": "red",
+          "msg": "No hay IP de cámara disponible para <cámara_>",
+          "meaning": "La red no ha asignado una IP a la cámara.",
+          "steps": [
+            "Reinicia la App.",
+            "Verifica que la cámara esté conectada al Wi-Fi.",
+            "Reinicia la cámara."
+          ],
+          "kw": "ip camara"
+        },
+        {
+          "cat": "red",
+          "msg": "No se puede alcanzar la cámara en la red local, o las credenciales COHN están desactualizadas",
+          "meaning": "El teléfono no puede comunicarse con la cámara en tu red, o la sesión ha caducado. COHN es la función Camera On the Home Network de GoPro, que permite controlar la cámara a través de la red Wi‑Fi de casa usando HTTPS de forma segura.",
+          "steps": [
+            "Verifica que el teléfono y la cámara estén en el mismo Wi-Fi.",
+            "Desactiva el aislamiento de clientes en el módem.",
+            "Apaga VPN.",
+            "Reinicia la app"
+          ],
+          "kw": "alcanzar camara red local"
+        },
+        {
+          "cat": "red",
+          "msg": "Timed out waiting for COHN connection after <n> seconds",
+          "meaning": "La cámara no se conectó a tu red a tiempo.",
+          "steps": [
+            "Acerca la cámara al módem.",
+            "Usa 2.4 GHz.",
+            "Reinicia la cámara y reintenta."
+          ],
+          "kw": "timeout cohn"
+        },
+        {
+          "cat": "red",
+          "msg": "Couldn't reach <cámara_>: <detalle>",
+          "meaning": "No se pudo comunicar con la cámara por la red.",
+          "steps": [
+            "Revisa que la cámara esté encendida y en el mismo Wi-Fi.",
+            "Reintenta o reconecta por Bluetooth."
+          ],
+          "kw": "reach alcanzar camara"
+        },
+        {
+          "cat": "red",
+          "msg": "Stream start failed: HTTP <código>",
+          "meaning": "No inició la vista previa.",
+          "steps": [
+            "Confirma que la cámara no se haya apagado o esté desconectada del Wi-Fi."
+          ],
+          "kw": "stream vista previa"
+        },
+        {
+          "cat": "camara",
+          "msg": "Bluetooth no está disponible en este dispositivo",
+          "meaning": "El teléfono no tiene Bluetooth disponible o está apagado.",
+          "steps": [
+            "Enciende el Bluetooth.",
+            "Concede el permiso de Dispositivos cercanos."
+          ],
+          "kw": "bluetooth no disponible"
+        },
+        {
+          "cat": "camara",
+          "msg": "Se perdió el enlace Bluetooth con <cámara_> / el enlace no responde",
+          "meaning": "La conexión Bluetooth se perdió.",
+          "steps": [
+            "Acerca la cámara al teléfono.",
+            "Espera a que la app intente reconectarse sola.",
+            "Si no, reinicia la app y la cámara para reconectar."
+          ],
+          "kw": "enlace bluetooth perdido"
+        },
+        {
+          "cat": "camara",
+          "msg": "El emparejamiento falló / No se pudo emparejar de nuevo",
+          "meaning": "Falló el emparejamiento Bluetooth con la cámara.",
+          "steps": [
+            "En la cámara: desliza el dedo de arriba hacia abajo, luego de izquierda a derecha y selecciona la opción con el signo [+] para vincular con el teléfono",
+            "Confirma la solicitud de emparejamiento en el teléfono.",
+            "Si no funciona, restablece las conexiones de la cámara y reintenta."
+          ],
+          "kw": "emparejar pair"
+        },
+        {
+          "cat": "camara",
+          "msg": "La cámara no acepta conexiones Bluetooth",
+          "meaning": "La cámara no está en modo de emparejamiento.",
+          "steps": [
+            "Reintenta la conexión y en la cámara, desliza el dedo de arriba hacia abajo, luego de izquierda a derecha y selecciona la opción con el signo [+] para vincular de nuevo."
+          ],
+          "kw": "bluetooth no acepta"
+        },
+        {
+          "cat": "camara",
+          "msg": "La cámara se conectó pero no respondió / no confirmó el emparejamiento",
+          "meaning": "La conexión se abrió pero la cámara no contestó.",
+          "steps": [
+            "Intenta de nuevo.",
+            "Restablece las conexiones: Conexiones > Restablecer conexiones."
+          ],
+          "kw": "no respondio confirmo"
+        },
+        {
+          "cat": "camara",
+          "msg": "Gatt.connect timed out — wake the camera and retry / Connection timeout",
+          "meaning": "La cámara no despertó a tiempo.",
+          "steps": [
+            "Enciende la cámara o pulsa un botón para despertarla.",
+            "Reintenta cerca del teléfono."
+          ],
+          "kw": "gatt timeout"
+        },
+        {
+          "cat": "camara",
+          "msg": "La posición Cabeza espera una GoPro Max 2 / Las posiciones de muñeca esperan una Hero 13/12",
+          "meaning": "El modelo de la cámara no corresponde a la posición asignada.",
+          "steps": [
+            "Asigna la MAX2 a \"Cabeza\" y las HERO12/13 a las muñecas."
+          ],
+          "kw": "posicion rol cabeza muñeca"
+        },
+        {
+          "cat": "camara",
+          "msg": "The camera is overheating — La cámara se está sobrecalentando",
+          "meaning": "La cámara está caliente; puede apagarse y corromper la grabación.",
+          "steps": [
+            "Apágala y déjala enfriar antes de grabar o descargar.",
+            "Evita el sol directo y lugares cerrados.",
+            "Baja el brillo si es posible."
+          ],
+          "kw": "sobrecalentamiento caliente"
+        },
+        {
+          "cat": "camara",
+          "msg": "<cámara> no detuvo la grabación tras dos comandos de Shutter Off",
+          "meaning": "La cámara no obedeció la orden de parar.",
+          "steps": [
+            "Detén la grabación a mano en la cámara.",
+            "Reconecta y revisa la grabación."
+          ],
+          "kw": "shutter off detener"
+        },
+        {
+          "cat": "camara",
+          "msg": "Camera \"<x>\" has no role assigned / two cameras share the same role",
+          "meaning": "Falta asignar posición o hay dos cámaras con la misma posición.",
+          "steps": [
+            "Asigna una posición a cada cámara (Cabeza, Muñeca izquierda, Muñeca derecha.)."
+          ],
+          "kw": "rol asignado"
+        },
+        {
+          "cat": "descarga",
+          "msg": "No se puede bajar el clip de la cámara",
+          "meaning": "La cámara no entregó el archivo por la red.",
+          "steps": [
+            "Comprueba que la cámara esté encendida, que no se haya sobrecalentado y que esté en el mismo Wi-Fi.",
+            "Mantén la pantalla del teléfono encendida y la app abierta en primer plano.",
+            "Reejecuta \"Reintentar Wi-Fi\".",
+            "Apaga VPN y DNS privado en caso de tenerlos activos.",
+            "Reintenta; si no sirve, sube el video desde la web de Rita."
+          ],
+          "kw": "descargar bajar clip camara http"
+        },
+        {
+          "cat": "descarga",
+          "msg": "Conecta las cámaras y reintenta / Reconecta las cámaras y reintenta",
+          "meaning": "Las cámaras se desconectaron durante el proceso.",
+          "steps": [
+            "Revisa que las cámaras estén encendidas / tengan batería suficiente.",
+			"Conecta todas las cámaras en Configuración.",
+            "Reintenta."
+          ],
+          "kw": "reconectar camaras"
+        },
+        {
+          "cat": "descarga",
+          "msg": "No se pudo leer la duración de todos los clips",
+          "meaning": "Faltan datos de algún clip para comparar duraciones.",
+          "steps": [
+            "Revisa la conexión de las cámaras y reintenta.",
+			"Reinicia la app y las cámaras y añade manualmente el video"
+          ],
+          "kw": "duracion clips"
+        },
+        {
+          "cat": "descarga",
+          "msg": "Esta cámara no reportó clips de video (.MP4/.360)",
+          "meaning": "La cámara no tiene clips o no los listó.",
+          "steps": [
+            "Verifica que grabó video y que hay archivos en la tarjeta.",
+            "Si no aparecen videos listados, solicita en WhatsApp el QR para restablecer el nombre de los archivos de la cámara.",
+			"Los videos que grabes a partir de ahora aparecerán listados. Los anteriores tendrás que subirlos desde la página web de Rita."
+          ],
+          "kw": "sin clips video"
+        },
+        {
+          "cat": "descarga",
+          "msg": "Waiting for the rest of the clips to download — Esperando la descarga del resto de los clips",
+          "meaning": "Faltan clips de otras cámaras por bajar.",
+          "steps": [
+            "Mantén todas las cámaras conectadas hasta que terminen."
+          ],
+          "kw": "esperando descarga"
+        },
+        {
+          "cat": "descarga",
+          "msg": "No se pudo cargar el video / La reproducción falló",
+          "meaning": "No se pudo reproducir o abrir el video.",
+          "steps": [
+            "Revisa conexión con la cámara.",
+            "Reintenta o descarga de nuevo."
+          ],
+          "kw": "video reproducir"
+        },
+        {
+          "cat": "app",
+          "msg": "E-XXXXXX (ref: E-MDC3WU, E-RDP7PT…)",
+          "meaning": "Es una referencia de incidente, repórtalo a Chema.",
+          "steps": [
+            "Anota el código y el texto completo del error.",
+            "Envía captura del error a Chema."
+          ],
+          "kw": "ref codigo e- referencia"
+        }
+      ],
+      "cats": {
+        "subida": [
+          "Subida",
+          "#7c3aed"
+        ],
+        "cuenta": [
+          "Cuenta y proyecto",
+          "#d97706"
+        ],
+        "red": [
+          "Wi-Fi y Conexiones",
+          "#2563eb"
+        ],
+        "camara": [
+          "Cámara y Bluetooth",
+          "#0d9488"
+        ],
+        "descarga": [
+          "Descarga de clips",
+          "#16a34a"
+        ],
+        "app": [
+          "App y sistema",
+          "#64748b"
+        ]
+      }
+    }
+  </script>
+
+  <script>
+    const D=JSON.parse(document.getElementById('data').textContent),E=D.E,C=D.cats;
+    const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const hex2rgba=(h,a)=>{const n=parseInt(h.slice(1),16);return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`};
+    let cat='all';
+    const q=document.getElementById('q'),list=document.getElementById('list'),count=document.getElementById('count');
+    E.forEach(e=>{e._h=norm([e.msg,e.meaning,e.kw,e.steps.join(' '),C[e.cat][0]].join(' '))});
+    function chips(){const el=document.getElementById('chips');
+     el.innerHTML='<button class="chip '+(cat==='all'?'on':'')+'" style="--c:#1f1f2e" data-c="all">Todos ('+E.length+')</button>'+
+     Object.keys(C).map(k=>{const n=E.filter(e=>e.cat===k).length;return `<button class="chip ${cat===k?'on':''}" style="--c:${C[k][1]}" data-c="${k}">${C[k][0]} (${n})</button>`}).join('');
+     el.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{cat=b.dataset.c;chips();render()})}
+    function hl(t,terms){let s=esc(t);terms.forEach(w=>{if(w.length<2)return;
+     const re=new RegExp('('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');s=s.replace(re,'<mark>$1</mark>')});return s}
+    function render(){
+     const raw=q.value.trim(),terms=norm(raw).split(/\s+/).filter(Boolean);
+     let r=E.map(e=>{let sc=0;if(cat!=='all'&&e.cat!==cat)return null;
+      if(terms.length){for(const w of terms){if(!e._h.includes(w))return null;sc+=norm(e.msg).includes(w)?3:1}}
+      return [e,sc]}).filter(Boolean);
+     if(terms.length)r.sort((a,b)=>b[1]-a[1]);
+     count.textContent=r.length+(r.length===1?' resultado':' resultados');
+     if(!r.length){list.innerHTML='<div class="empty"><b>No encontré ese error.</b><br>Prueba con menos palabras (por ejemplo "S3" o "cohn"), cambia la categoría o revisa la sección de reporte abajo.</div>';return}
+     list.innerHTML=r.map(([e])=>{const c=C[e.cat][1];
+      return `<article class="card" style="--c:${c};--bg2:${hex2rgba(c,.09)}"><div class="err"><span class="tag">${C[e.cat][0]}</span><div class="msg">${hl(e.msg,terms)}</div><div class="mean">${hl(e.meaning,terms)}</div></div><div class="sol"><h3>Solución</h3><ol>${e.steps.map(s=>'<li>'+hl(s,terms)+'</li>').join('')}</ol></div></article>`}).join('')}
+    q.addEventListener('input',render);
+    document.getElementById('clr').onclick=()=>{q.value='';cat='all';chips();render();q.focus()};
+    document.addEventListener('keydown',ev=>{if(ev.key==='/'&&document.activeElement!==q){ev.preventDefault();q.focus()}});
+    chips();render();
+  </script>
+</body>
+</html>
